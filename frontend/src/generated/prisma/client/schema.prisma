@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?
+  name         String?
+  image        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Trial & Subscription
+  trialEndsAt        DateTime
+  subscriptionStatus String   @default("trialing") // trialing | active | canceled | past_due | expired
+  stripeCustomerId   String?  @unique
+  subscriptionId     String?
+
+  accounts  Account[]
+  sessions  Session[]
+  holdings  Holding[]
+  watchlist Watchlist[]
+}
+
+model Holding {
+  id            String   @id @default(cuid())
+  userId        String
+  ticker        String
+  companyName   String
+  shares        Float
+  purchasePrice Float
+  purchaseDate  DateTime
+  memo          String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, ticker])
+}
+
+model Watchlist {
+  id          String   @id @default(cuid())
+  userId      String
+  ticker      String
+  companyName String
+  memo        String?
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, ticker])
+  @@index([userId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

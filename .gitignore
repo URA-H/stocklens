@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.env
+.env.local
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+dist/
+.ruff_cache/
+postgres_data/
