@@ -43,13 +43,26 @@
 
 ## スクリーンショット / デモ動画
 
+### 公開画面（未認証で見られる範囲）
+
 | 画面 | 説明 |
 |------|------|
-| ![Dashboard](./docs/screenshots/dashboard.png) | ダッシュボード（推奨銘柄ランキング） |
-| ![AI Review](./docs/screenshots/ai-review.png) | AI レビュー（Claude による定性分析） |
-| ![Portfolio](./docs/screenshots/portfolio.png) | ポートフォリオ（保有銘柄管理 + 売却シグナル） |
-| ![Watchlist](./docs/screenshots/watchlist.png) | ウォッチリスト |
-| ![Pricing](./docs/screenshots/pricing.png) | 料金プラン（Stripe） |
+| ![Landing](./docs/screenshots/index-desktop.png) | ランディング |
+| ![Login](./docs/screenshots/login-desktop.png) | ログイン |
+| ![Signup](./docs/screenshots/signup-desktop.png) | サインアップ |
+| ![Pricing](./docs/screenshots/pricing-desktop.png) | 料金プラン（Stripe） |
+| ![Privacy](./docs/screenshots/privacy-desktop.png) | プライバシーポリシー |
+| ![Terms](./docs/screenshots/terms-desktop.png) | 利用規約 |
+| ![Tokushoho](./docs/screenshots/tokushoho-desktop.png) | 特商法表示 |
+| ![Expired](./docs/screenshots/expired-desktop.png) | セッション切れ |
+
+モバイル版もすべて `-mobile.png` で同梱（`docs/screenshots/` 配下）。
+
+### 認証後画面（撮影予定）
+
+ダッシュボード（推奨銘柄ランキング）/ AI レビュー / ポートフォリオ（保有銘柄管理 + 売却シグナル）/ ウォッチリストは認証後画面のため後日 auth フローで撮り直し予定。
+
+撮影は [routeshot](https://github.com/URA-H/routeshot) CLI で生成（設定は `frontend/routeshot.config.json`）。
 
 - **デモ動画（2〜3分）**: `docs/demo.mp4`（撮影予定）
 
