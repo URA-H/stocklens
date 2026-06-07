@@ -1,0 +1,13 @@
+{
+  "devCommand": "pnpm dev",
+  "baseUrl": "http://localhost:3000",
+  "readyTimeoutMs": 120000,
+  "delayMs": 2000,
+  "outputDir": "../docs/screenshots",
+  "fullPage": true,
+  "routes": ["/", "/login", "/signup", "/pricing", "/privacy", "/terms", "/tokushoho", "/expired"],
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "mobile", "width": 390, "height": 844, "deviceScaleFactor": 2 }
+  ]
+}
